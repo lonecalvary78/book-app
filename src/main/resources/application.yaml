@@ -1,0 +1,62 @@
+quarkus:
+  application:
+    name: book-app
+  banner:
+    enabled: false
+  profile: dev
+  swagger-ui:
+    always-include: true
+
+
+
+pagination:
+  maximum-records-per-page: 10
+
+"%dev":
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        url: jdbc:h2:mem:books
+    http:
+      cors:
+        ~: true
+        origins: /.*/
+        methods: GET, POST
+    hibernate-orm:
+      database:
+        generation: drop-and-create
+    log:
+      level: DEBUG
+
+"%testing":
+  quarkus:
+    log:
+      level: INFO
+    datasource:
+      db-kind: h2
+      jdbc:
+        url: jdbc:h2:mem:books
+    hibernate-orm:
+      database:
+        generation: none
+    http:
+      cors:
+        ~: true
+        methods: GET, POST
+
+"%prod":
+  quarkus:
+    log:
+      level: INFO
+    datasource:
+      db-kind: h2
+      jdbc:
+        url: jdbc:h2:mem:books
+    hibernate-orm:
+      database:
+        generation: none
+    http:
+      cors:
+        ~: true
+        methods: GET, POST
