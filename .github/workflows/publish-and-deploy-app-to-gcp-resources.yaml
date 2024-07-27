@@ -10,7 +10,7 @@ jobs:
   deploy-app-to-cloudrun:
     needs:
       - publish-app-to-gcp-artifact
-    uses: ./.github/workflows/publish-image-to-gar.yaml
+    uses: ./.github/workflows/deploy-app-to-cloudrun.yaml
     with:
       region: 'asia-southeast2'
     secrets: inherit
