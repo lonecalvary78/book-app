@@ -9,10 +9,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: build and publish to Github CR
-        uses: ./.github/workflows/publish-to-github.yaml
+        uses: ./publish-to-github.yaml
       - name: build and publish to Google Cloud Artifact
-        uses: ./.github/workflows/publish-to-gcp-artifact.yaml
+        uses: ./publish-to-gcp-artifact.yaml
         with:
           region: ${{ env.region }}
