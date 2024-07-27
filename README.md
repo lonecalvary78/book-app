@@ -1,28 +1,7 @@
 ## Demo Book API
 [![publish image](https://github.com/lonecalvary78/book-app/actions/workflows/publish-image.yaml/badge.svg)](https://github.com/lonecalvary78/book-app/actions/workflows/publish-image.yaml)
 
-### Getting Started
-Since this application running on the container, you execute the command below
-```
-mvn clean install -U -Dquarkus.container-image.build=true -Dquarkus.container-image.name=book-app -Dquarkus.container-image.tag=latest
-```
+#### API Documentation(DEV Sandbox)
+More details of Bokk API, please check it out through the link below
+https://book-app-o5kvnlv7uq-et.a.run.app/q/swagger-ui
 
-That command will do build the image through the maven build execution
-
-### Running the application 
-To run the application on the docker container with the specific enviroment, please follow the instruction below
-
-#### Development
-```
-docker run --name=book-app -d -p 8080:8080 -e TARGET_ENV=dev book-app:latest
-```
-
-#### Testing
-```
-docker run --name=book-app -d -p 8080:8080 -e TARGET_ENV=testing book-app:latest
-```
-
-#### Production
-```
-docker run --name=book-app -d -p 8080:8080 -e TARGET_ENV=prod book-app:latest
-```
