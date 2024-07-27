@@ -8,11 +8,9 @@ jobs:
     uses: ./.github/workflows/publish-image-to-gar.yaml
     secrets: inherit
   deploy-app-to-cloudrun:
-    env:
-      resource_region: 'asia-southeast2'
     needs:
       - publish-app-to-gcp-artifact
     uses: ./.github/workflows/publish-image-to-gar.yaml
     with:
-      region: ${{ env.asia-southeast2 }}
+      region: 'asia-southeast2'
     secrets: inherit
