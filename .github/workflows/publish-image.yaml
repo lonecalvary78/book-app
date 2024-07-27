@@ -1,0 +1,10 @@
+name: publish image
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish-to-github:
+    uses: ./.github/workflows/publish-image-to-github.yaml
+    secrets: inherit
+
