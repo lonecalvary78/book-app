@@ -27,7 +27,7 @@ pagination:
       database:
         generation: drop-and-create
     log:
-      level: DEBUG
+      level: INFO
 
 "%testing":
   quarkus:
