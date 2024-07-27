@@ -1,6 +1,6 @@
 name: Publish and deploy the application to Google Cloud resources
 env:
-  resource_region: asia-southeast2
+  resource_region: 'asia-southeast2'
 on:
   push:
     branches:
