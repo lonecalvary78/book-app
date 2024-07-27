@@ -1,3 +1,6 @@
+permissions:
+  contents: read
+  id-token: write
 on:
   workflow_call:
     inputs:
@@ -8,9 +11,6 @@ on:
 jobs:
   build-and-push-image-to-gcp-artifact:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Setup Docker
