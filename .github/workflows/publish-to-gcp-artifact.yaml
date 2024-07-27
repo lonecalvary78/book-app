@@ -23,6 +23,11 @@ jobs:
       - id: auth-to-gcp
         name: Authenticate to GCP resources
         uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          project_id: ${{ secrets.PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCT }}
       - uses: docker/login-action@v3
         with:
           registry: ${{ inputs.region }}-docker.pkg.dev
