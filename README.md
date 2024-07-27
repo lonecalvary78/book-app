@@ -1,5 +1,6 @@
 ## Demo Book API
-[![Build and deploy Book App](https://github.com/lonecalvary78/book-app/actions/workflows/build-and-deploy.yaml/badge.svg)](https://github.com/lonecalvary78/book-app/actions/workflows/build-and-deploy.yaml)
+[![publish image](https://github.com/lonecalvary78/book-app/actions/workflows/publish-image.yaml/badge.svg)](https://github.com/lonecalvary78/book-app/actions/workflows/publish-image.yaml)
+
 ### Getting Started
 Since this application running on the container, you execute the command below
 ```
