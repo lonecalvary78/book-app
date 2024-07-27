@@ -13,8 +13,6 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        uses:
       - name: checkout the project source code
         uses: actions/checkout@v4
       - name: Authenticate to Google Cloud
