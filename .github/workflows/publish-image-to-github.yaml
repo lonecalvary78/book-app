@@ -5,10 +5,6 @@ on:
         type: string
         required: false
         default: 'latest'
-permissions:
-  contents: read
-  id-token: write
-  packages: write
 jobs:
   publish-to-github:
     runs-on: ubuntu-latest
