@@ -1,0 +1,41 @@
+permissions:
+  contents: read
+  id-token: write
+
+on:
+  workflow_call:
+    inputs:
+      min-instances:
+        type: number
+        required: false
+        default: 1
+      max-instances:
+        type: number
+        required: false
+        default: 1
+      region:
+        type: string
+        required: true
+      env_profile:
+        type: string
+        required: false
+        default: 'dev'
+jobs:
+  deploy-app-to-cloudrun:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/setup-gcloud@v2
+        with:
+          version: '>= 485.0.0'
+      - id: gcp_auth
+        uses: google-github-actions/auth@v2
+        with:
+          token_format: access_token
+          project_id: ${{ secrets.PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCT }}
+      - run: |
+         gcloud run deploy book-app --image=${{ inputs.region }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/docker-repo/book-app:latest \
+         --region=${{ inputs.region }} --min-instances=${{ inputs.min-instances }} --max-instances=${{ inputs.max-instances }} --set-env-vars=TARGET_ENV=${{ inputs.env_profile }} \
+         --port 8080 --allow-unauthenticated --service-account=${{ secrets.SERVICE_ACCT }}

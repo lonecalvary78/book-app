@@ -1,0 +1,18 @@
+name: Publish and deploy the application to Google Cloud resources
+env:
+  resource_region: asia-southeast2
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish-app-to-gcp-artifact:
+    uses: ./.github/workflows/publish-image-to-gar.yaml
+    secrets: inherit
+  deploy-app-to-cloudrun:
+    needs:
+      - publish-app-to-gcp-artifact
+    uses: ./.github/workflows/publish-image-to-gar.yaml
+    with:
+      region: ${{ env.asia-southeast2 }}
+    secrets: inherit
