@@ -20,4 +20,4 @@ jobs:
         with:
           context: .
           push: true
-          tag: lonecalvary78/book-app:latest
+          tags: lonecalvary78/book-app:latest
