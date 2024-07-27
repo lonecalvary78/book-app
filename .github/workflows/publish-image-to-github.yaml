@@ -1,0 +1,23 @@
+on:
+  workflow_call:
+    inputs:
+      tag_version:
+        type: string
+        required: false
+        default: 'latest'
+jobs:
+  publish-to-github:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tag: lonecalvary78/book-app:latest
