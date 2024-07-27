@@ -6,7 +6,7 @@ on:
         required: false
         default: 'latest'
 jobs:
-  publish-to-github:
+  build-and-publish-image-to-github:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
