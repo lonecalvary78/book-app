@@ -1,11 +1,12 @@
 name: Build and deploy Book App
-env:
-  region: asia-southeast2
-  target_env: prod
 on:
   push:
     branches:
       - master
+env:
+  region: asia-southeast2
+  target_env: prod
+
 jobs:
   publish-to-github:
     uses: ./.github/workflows/publish-to-github.yaml
