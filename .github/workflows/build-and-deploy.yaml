@@ -3,14 +3,10 @@ on:
   push:
     branches:
       - master
-env:
-  region: asia-southeast2
-  target_env: prod
-
 jobs:
   publish-to-github:
     uses: ./.github/workflows/publish-to-github.yaml
   publish-to-google-artifact:
     uses: ./.github/workflows/publish-to-gcp-artifact.yaml
     with:
-      region: ${{ env.region }}
+      region: 'asia-southeast2'
