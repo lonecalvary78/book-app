@@ -7,6 +7,8 @@ on:
     branches:
       - master
 jobs:
+  publish-to-github:
+    uses: ./.github/workflows/publish-to-github.yaml
   build-and-deploy:
     permissions:
       contents: read
