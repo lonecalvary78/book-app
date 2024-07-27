@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build and publish to Github CR
-        uses: ./publish-to-github.yaml
+        uses: ./.github/workflows/publish-to-github.yaml
       - name: build and publish to Google Cloud Artifact
-        uses: ./publish-to-gcp-artifact.yaml
+        uses: ./.github/workflows/publish-to-gcp-artifact.yaml
         with:
           region: ${{ env.region }}
