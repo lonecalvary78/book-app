@@ -10,7 +10,12 @@ mvn quarkus:dev -Dquarkus.profile=dev
 
 This application will run in the local environment using port: 8080
 
-### API Documentation(DEV Sandbox)
-More details of Bokk API, please check it out through the link below
+### API Documentation
+More details of Book API, please check it out through the links below
+
+#### Local
+https://localhost:8080/q/swagger-ui
+
+#### Sandbox
 https://book-app-o5kvnlv7uq-et.a.run.app/q/swagger-ui
 
