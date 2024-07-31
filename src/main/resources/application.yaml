@@ -7,8 +7,6 @@ quarkus:
   swagger-ui:
     always-include: true
 
-
-
 pagination:
   maximum-records-per-page: 10
 
@@ -25,7 +23,7 @@ pagination:
         methods: GET, POST
     hibernate-orm:
       database:
-        generation: drop-and-create
+        generation: update
     log:
       level: INFO
 
@@ -39,7 +37,8 @@ pagination:
         url: jdbc:h2:mem:books
     hibernate-orm:
       database:
-        generation: none
+        generation: update
+
     http:
       cors:
         ~: true
