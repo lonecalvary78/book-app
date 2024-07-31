@@ -1,6 +1,5 @@
 ## Demo Book API
-[![Publish and deploy the application to Google Cloud resources](https://github.com/lonecalvary78/book-app/actions/workflows/publish-and-deploy-app-to-gcp-resources.yaml/badge.svg)](https://github.com/lonecalvary78/book-app/actions/workflows/publish-and-deploy-app-to-gcp-resources.yaml)
-
+[![book-app-ci](https://github.com/lonecalvary78/book-app/actions/workflows/book-app-ci.yaml/badge.svg)](https://github.com/lonecalvary78/book-app/actions/workflows/book-app-ci.yaml)
 
 ### Getting Started
 If you want to run the application in the local, you can execute the command below
