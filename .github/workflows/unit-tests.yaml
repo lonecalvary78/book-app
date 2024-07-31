@@ -14,5 +14,6 @@ jobs:
         with:
           java-version: 21
           distribution: 'microsoft'
+          cache: 'maven'
       - name: perform unit test through maven command
         run: mvn clean test -Dquarkus.profile=${{ inputs.env_profile }}
