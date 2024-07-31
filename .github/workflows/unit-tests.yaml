@@ -17,3 +17,7 @@ jobs:
           cache: 'maven'
       - name: perform unit test through maven command
         run: mvn clean test -Dquarkus.profile=${{ inputs.env_profile }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: book-app-test-artifact
+          path: target/site/
