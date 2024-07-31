@@ -1,6 +1,6 @@
 package demo.app.book.util.pagination;
 
-import demo.app.book.model.pagination.PaginatedInquiryResult;
+import demo.app.book.util.pagination.model.PaginatedInquiryResult;
 import jakarta.inject.Singleton;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
