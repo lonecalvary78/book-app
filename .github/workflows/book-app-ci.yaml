@@ -1,0 +1,10 @@
+name: book-app-ci
+on:
+  push:
+    branches:
+      - master
+jobs:
+  unit-tests:
+    uses: ./.github/workflows/unit-tests.yaml
+    with:
+      env_profile: 'dev'
