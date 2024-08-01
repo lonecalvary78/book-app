@@ -1,6 +1,6 @@
-package demo.app.book.domain.renting.repository;
+package demo.app.book.domain.rent.repository;
 
-import demo.app.book.domain.renting.entity.Renting;
+import demo.app.book.domain.rent.entity.Rent;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -9,17 +9,17 @@ import java.time.OffsetDateTime;
 import java.time.ZoneId;
 
 @ApplicationScoped
-public class RentingRepository {
+public class RentRepository {
   @Inject
   private EntityManager entityManager;
 
   @Transactional
-  public Renting findRentingId(Long rentingId) {
-    return entityManager.find(Renting.class, rentingId);
+  public Rent findRentingId(Long rentingId) {
+    return entityManager.find(Rent.class, rentingId);
   }
 
   @Transactional
-  public void save(Renting renting) {
+  public void save(Rent renting) {
     entityManager.persist(renting);
   }
 

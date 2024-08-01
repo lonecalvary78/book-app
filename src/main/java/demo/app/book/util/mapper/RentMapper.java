@@ -1,16 +1,16 @@
 package demo.app.book.util.mapper;
 
-import demo.app.book.domain.renting.entity.Renting;
-import demo.app.book.domain.renting.model.RentingRequestDTO;
+import demo.app.book.domain.rent.entity.Rent;
+import demo.app.book.domain.rent.model.RentRequestDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 @Mapper
-public interface RentingMapper {
+public interface RentMapper {
   @Mappings({
     @Mapping(source="bookId", target="bookId"),
     @Mapping(source="borrowerId", target="borrowerId")
   })
-  Renting fromDTO(RentingRequestDTO rentingRequestDTO);
+  Rent fromDTO(RentRequestDTO rentRequestDTO);
 }

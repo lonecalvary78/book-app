@@ -1,4 +1,4 @@
-package demo.app.book.domain.renting.exception;
+package demo.app.book.domain.rent.exception;
 
 public class NonExistBookRentingException extends Exception {
   public NonExistBookRentingException() {

@@ -1,6 +1,6 @@
-package demo.app.book.domain.renting.exception.handler;
+package demo.app.book.domain.rent.exception.handler;
 
-import demo.app.book.domain.renting.exception.NonExistBookRentingException;
+import demo.app.book.domain.rent.exception.NonExistBookRentingException;
 import demo.app.book.infra.exception.handler.GenericApplicationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.Provider;

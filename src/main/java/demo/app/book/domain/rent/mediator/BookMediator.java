@@ -1,4 +1,4 @@
-package demo.app.book.domain.renting.mediator;
+package demo.app.book.domain.rent.mediator;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import demo.app.book.domain.book.service.BookService;

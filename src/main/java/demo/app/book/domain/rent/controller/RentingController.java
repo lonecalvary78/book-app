@@ -1,11 +1,11 @@
-package demo.app.book.domain.renting.controller;
+package demo.app.book.domain.rent.controller;
 
 import demo.app.book.domain.book.exception.NonExistingBookException;
 import demo.app.book.domain.borrower.exception.NonExistingBorrowerException;
-import demo.app.book.domain.renting.exception.BookIsOccupiedException;
-import demo.app.book.domain.renting.exception.NonExistBookRentingException;
-import demo.app.book.domain.renting.facade.RentingFacade;
-import demo.app.book.domain.renting.model.RentingRequestDTO;
+import demo.app.book.domain.rent.exception.BookIsOccupiedException;
+import demo.app.book.domain.rent.exception.NonExistBookRentingException;
+import demo.app.book.domain.rent.facade.RentFacade;
+import demo.app.book.domain.rent.model.RentRequestDTO;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.Path;
@@ -22,29 +22,29 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 @Path("/rents")
 public class RentingController {
   @Inject
-  private RentingFacade rentingFacade;
+  private RentFacade rentFacade;
 
   @POST
   @Operation(description = "To rent the book")
   @APIResponses({
-     @APIResponse(responseCode = "200", description = "The book renting request is successfully accepted", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = RentingRequestDTO.class))),
+     @APIResponse(responseCode = "200", description = "The book renting request is successfully accepted", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = RentRequestDTO.class))),
      @APIResponse(responseCode = "400", description = "Indicated the request is invalid due to either non-existing book or non-existing borrower profile", content = @Content(mediaType = MediaType.APPLICATION_JSON)),
      @APIResponse(responseCode = "409", description = "Indicated the request can not be proceed since the book was rented before or rented by other person at the moment", content = @Content(mediaType = MediaType.APPLICATION_JSON))
   })
-  public void rentBook(RentingRequestDTO rentingRequestDTO) throws NonExistingBookException, NonExistingBorrowerException, BookIsOccupiedException {
-    rentingFacade.rentBookFromLibary(rentingRequestDTO);
+  public void rentBook(RentRequestDTO rentRequestDTO) throws NonExistingBookException, NonExistingBorrowerException, BookIsOccupiedException {
+    rentFacade.rentBookFromLibary(rentRequestDTO);
   }
 
   @PATCH
   @Path("/{rentId}")
   @Operation(description = "To return book that being rented before")
   @APIResponses({
-          @APIResponse(responseCode = "200", description = "Indicated the return book request is successfully accepted", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = RentingRequestDTO.class))),
+          @APIResponse(responseCode = "200", description = "Indicated the return book request is successfully accepted", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = RentRequestDTO.class))),
           @APIResponse(responseCode = "400", description = "Indicated the invalid request when it could not find the book renting record", content = @Content(mediaType = MediaType.APPLICATION_JSON))
   })
   public void returnBook(@PathParam("rentId") Long rentId, @QueryParam("action") String action) throws NonExistBookRentingException {
     if (action.toUpperCase().equals("RETURN")) {
-      rentingFacade.returnBookToLibrary(rentId);
+      rentFacade.returnBookToLibrary(rentId);
     }
   }
 }
