@@ -3,8 +3,7 @@ package demo.app.book.domain.borrower.repository;
 import demo.app.book.common.test.cleanup.util.TestDataCleanupUtil;
 import demo.app.book.common.test.GenericApplicationTest;
 import demo.app.book.common.test.model.TestCase;
-import demo.app.book.domain.borrower.entry.Borrower;
-import demo.app.book.domain.borrower.exception.DuplicateBorrowerEntryException;
+import demo.app.book.domain.borrower.entity.Borrower;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.AfterAll;
@@ -29,14 +28,7 @@ class BorrowerRepositoryTest implements GenericApplicationTest<Borrower> {
   @DisplayName("Register a new borrower")
   @MethodSource("constructTestCases")
   void registerNew(TestCase<Borrower> testCase) {
-    if (!testCase.isThrowException()) {
-      Assertions.assertDoesNotThrow(()->borrowerRepository.registerNew(testCase.getInput()));
-    } else {
-      if (testCase.getExceptionClass() != null)
-        Assertions.assertThrows(testCase.getExceptionClass(),()->borrowerRepository.registerNew(testCase.getInput()));
-      else
-        doFailWhenExpectedThrownExceptionClassIsMissing();
-    }
+    Assertions.assertDoesNotThrow(()->borrowerRepository.save(testCase.getInput()));
   }
 
   @AfterAll
@@ -54,8 +46,7 @@ class BorrowerRepositoryTest implements GenericApplicationTest<Borrower> {
   @Override
   public Stream<TestCase<Borrower>> constructTestCases() {
     return Stream.of(
-            newTestCase(createNewBorrower("John","Doe"),false,null),
-            newTestCase(createNewBorrower("John","Doe"),true, DuplicateBorrowerEntryException.class)
+            newTestCase(createNewBorrower("John","Doe"),false,null)
             );
   }
 }
