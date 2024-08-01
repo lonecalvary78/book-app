@@ -2,7 +2,6 @@ package demo.app.book.domain.book.controller;
 
 import demo.app.book.domain.book.exception.DuplicateBookEntryException;
 import demo.app.book.domain.book.model.BookDTO;
-import demo.app.book.domain.renting.facade.RentingFacade;
 import demo.app.book.util.pagination.model.PaginatedInquiryResult;
 import demo.app.book.domain.book.service.BookService;
 import jakarta.inject.Inject;
@@ -25,9 +24,6 @@ import java.util.List;
 public class BookController {
   @Inject
   private BookService bookService;
-
-  @Inject
-  private RentingFacade rentingFacade;
 
   @GET
   @Operation(description = "To get the list of books")

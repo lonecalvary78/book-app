@@ -1,7 +1,6 @@
 package demo.app.book.domain.book.service;
 
 import demo.app.book.domain.book.entity.Book;
-import demo.app.book.domain.renting.repository.RentingRepository;
 import demo.app.book.domain.book.repository.BookRepository;
 import demo.app.book.domain.book.exception.DuplicateBookEntryException;
 import demo.app.book.util.mapper.BookMapper;
@@ -20,9 +19,6 @@ import java.util.Optional;
 public class BookService {
   @Inject
   private BookRepository bookRepository;
-
-  @Inject
-  private RentingRepository rentingRepository;
 
   @Inject
   private PaginationUtil paginationUtil;
