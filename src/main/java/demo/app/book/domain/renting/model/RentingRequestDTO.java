@@ -4,11 +4,13 @@ import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class RentingRequestDTO {
@@ -18,7 +20,7 @@ public class RentingRequestDTO {
   private Long borrowerId;
 
   @JsonbDateFormat("yyyy-MM-dd")
-  private OffsetDateTime fromDate;
+  private LocalDate fromDate;
   @JsonbDateFormat("yyyy-MM-dd")
-  private OffsetDateTime toDate;
+  private LocalDate toDate;
 }

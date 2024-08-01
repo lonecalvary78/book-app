@@ -1,7 +1,6 @@
 package demo.app.book.domain.borrower.repository;
 
-import demo.app.book.domain.borrower.entry.Borrower;
-import demo.app.book.domain.borrower.exception.DuplicateBorrowerEntryException;
+import demo.app.book.domain.borrower.entity.Borrower;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -13,17 +12,20 @@ public class BorrowerRepository {
   private EntityManager entityManager;
 
   @Transactional
-  public Borrower registerNew(Borrower borrower) throws DuplicateBorrowerEntryException {
-    if(anyRegisteredBorrowerForThisProfile(borrower))
-      throw new DuplicateBorrowerEntryException();
+  public Borrower findBorrowerById(Long borrowerId) {
+    return entityManager.find(Borrower.class,borrowerId);
+  }
+
+  @Transactional
+  public Borrower save(Borrower borrower) {
     entityManager.persist(borrower);
     return borrower;
   }
 
-  private boolean anyRegisteredBorrowerForThisProfile(Borrower borrower) {
-    return ((Long)entityManager.createNativeQuery("select count(1) from borrower b where lower(b.firstname)=:firstName and lower(b.lastname)=:lastName")
+  public Long countRegisteredBorrowerForThisProfile(Borrower borrower) {
+    return entityManager.createQuery("select count(borrower) from Borrower borrower where lower(borrower.firstName)=:firstName and lower(borrower.lastName)=:lastName", Long.class)
             .setParameter("firstName",borrower.getFirstName().toLowerCase())
             .setParameter("lastName",borrower.getLastName().toLowerCase())
-            .getSingleResult()).longValue()>0;
+            .getSingleResult();
   }
 }

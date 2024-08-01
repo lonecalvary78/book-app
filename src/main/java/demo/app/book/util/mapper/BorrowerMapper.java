@@ -1,6 +1,6 @@
 package demo.app.book.util.mapper;
 
-import demo.app.book.domain.borrower.entry.Borrower;
+import demo.app.book.domain.borrower.entity.Borrower;
 import demo.app.book.domain.borrower.model.BorrowerDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,5 +20,5 @@ public interface BorrowerMapper {
           @Mapping(source="firstName", target="firstName"),
           @Mapping(source="lastName", target="lastName")
   })
-  BorrowerDTO toEntity(Borrower borrower);
+  BorrowerDTO fromEntity(Borrower borrower);
 }

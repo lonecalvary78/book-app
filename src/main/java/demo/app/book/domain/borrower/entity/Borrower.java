@@ -1,10 +1,12 @@
-package demo.app.book.domain.borrower.entry;
+package demo.app.book.domain.borrower.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="borrower")
+@Table(uniqueConstraints = {
+   @UniqueConstraint(name = "uk_borrower_1",columnNames = {"firstName","lastName"})
+})
 @Data
 public class Borrower {
   @Id

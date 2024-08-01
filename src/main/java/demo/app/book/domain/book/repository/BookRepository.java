@@ -1,7 +1,6 @@
 package demo.app.book.domain.book.repository;
 
-import demo.app.book.domain.book.entry.Book;
-import demo.app.book.domain.book.exception.DuplicateBookEntryException;
+import demo.app.book.domain.book.entity.Book;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -20,18 +19,19 @@ public class BookRepository {
   }
 
   @Transactional
-  public Book newEntry(Book book) throws DuplicateBookEntryException {
-    if(anyRegisteredBooksForThisReference(book))
-      throw new DuplicateBookEntryException(book.getIsbn());
-    else {
-      entityManager.persist(book);
-      return book;
-    }
+  public Book findBookById(Long bookId) {
+    return entityManager.find(Book.class, bookId);
   }
 
-  private boolean anyRegisteredBooksForThisReference(Book book) {
-    return ((Long)entityManager.createNativeQuery("SELECT count(1) FROM book WHERE book.isbn=:isbn")
+  @Transactional
+  public Book save(Book book) {
+    entityManager.persist(book);
+    return book;
+  }
+
+  public Long countRegisteredBooksForThisReference(Book book) {
+    return entityManager.createQuery("SELECT count(book) FROM Book book WHERE book.isbn=:isbn", Long.class)
             .setParameter("isbn", book.getIsbn())
-            .getSingleResult()).longValue()>0;
+            .getSingleResult();
   }
 }

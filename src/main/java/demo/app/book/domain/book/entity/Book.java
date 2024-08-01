@@ -1,11 +1,13 @@
-package demo.app.book.domain.book.entry;
+package demo.app.book.domain.book.entity;
 
 import jakarta.persistence.*;
 
 import lombok.Data;
 
 @Entity
-@Table(name="book")
+@Table(uniqueConstraints = {
+   @UniqueConstraint(name = "uk_book_1",columnNames = "isbn")
+})
 @Data
 public class Book {
   @Id

@@ -1,6 +1,6 @@
 package demo.app.book.util.mapper;
 
-import demo.app.book.domain.book.entry.Book;
+import demo.app.book.domain.book.entity.Book;
 import demo.app.book.domain.book.model.BookDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
