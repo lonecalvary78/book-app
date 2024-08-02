@@ -14,3 +14,4 @@ jobs:
   publish-image-to-gar:
     needs: unit-tests
     uses: ./.github/workflows/publish-image-to-gar.yaml
+    secrets: inherit
