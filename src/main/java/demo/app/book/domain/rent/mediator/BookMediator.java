@@ -10,7 +10,7 @@ public class BookMediator {
   @Inject
   private BookService bookService;
 
-  public boolean IsExist(Long bookId) {
+  public boolean isExist(Long bookId) {
     return bookService.findBookById(bookId).isPresent();
   }
 }

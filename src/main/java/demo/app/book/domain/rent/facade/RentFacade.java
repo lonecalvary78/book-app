@@ -37,9 +37,9 @@ public class RentFacade {
 
 
   private void verifyRentingRequest(RentRequestDTO rentRequestDTO) throws NonExistingBookException, NonExistingBorrowerException {
-    if(!bookMediator.IsExist(rentRequestDTO.getBookId()))
+    if(!bookMediator.isExist(rentRequestDTO.getBookId()))
       throw new NonExistingBookException();
-    else if (!borrowerMediator.IsExist(rentRequestDTO.getBorrowerId())) {
+    else if (!borrowerMediator.isExist(rentRequestDTO.getBorrowerId())) {
       throw new NonExistingBorrowerException();
     }
   }

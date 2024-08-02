@@ -11,7 +11,7 @@ public class BorrowerMediator {
   @Inject
   private BorrowerRepository borrowerRepository;
 
-  public boolean IsExist(Long borrowerId) {
+  public boolean isExist(Long borrowerId) {
     return Optional.ofNullable(borrowerRepository.findBorrowerById(borrowerId)).isPresent();
   }
 
