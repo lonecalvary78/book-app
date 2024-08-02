@@ -10,6 +10,6 @@ public class NonExistBookRentingExceptionHandler implements GenericApplicationEx
 
   @Override
   public Response toResponse(NonExistBookRentingException nonExistBookRentingException) {
-    return Response.status(Response.Status.BAD_REQUEST).entity(errorDetails(Response.Status.BAD_REQUEST, nonExistBookRentingException)).build();
+    return Response.status(Response.Status.BAD_REQUEST).entity(ofErrorDetail(Response.Status.BAD_REQUEST, nonExistBookRentingException)).build();
   }
 }

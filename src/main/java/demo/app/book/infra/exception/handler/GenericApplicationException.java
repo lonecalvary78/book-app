@@ -5,7 +5,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 
 public interface GenericApplicationException<E extends Exception> extends ExceptionMapper<E> {
-  default ErrorDetailDTO errorDetails(Response.Status responseStatus, E thrownException) {
+  default ErrorDetailDTO ofErrorDetail(Response.Status responseStatus, E thrownException) {
     return new ErrorDetailDTO(responseStatus.getStatusCode(), thrownException.getMessage());
   }
 }

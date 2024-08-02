@@ -9,6 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 public class DuplicateBookEntryExceptionHandler implements GenericApplicationException<DuplicateBookEntryException> {
   @Override
   public Response toResponse(DuplicateBookEntryException duplicateBookEntryException) {
-    return Response.status(Response.Status.CONFLICT).entity(errorDetails(Response.Status.CONFLICT,duplicateBookEntryException)).build();
+    return Response.status(Response.Status.CONFLICT).entity(ofErrorDetail(Response.Status.CONFLICT,duplicateBookEntryException)).build();
   }
 }

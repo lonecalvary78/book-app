@@ -9,6 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 public class NonExistingBorrowerExceptionHandler implements GenericApplicationException<NonExistingBorrowerException> {
   @Override
   public Response toResponse(NonExistingBorrowerException nonExistingBorrowerException) {
-    return Response.status(Response.Status.BAD_REQUEST).entity(errorDetails(Response.Status.BAD_REQUEST, nonExistingBorrowerException)).build();
+    return Response.status(Response.Status.BAD_REQUEST).entity(ofErrorDetail(Response.Status.BAD_REQUEST, nonExistingBorrowerException)).build();
   }
 }

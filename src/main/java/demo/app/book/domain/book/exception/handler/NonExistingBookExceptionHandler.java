@@ -9,6 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 public class NonExistingBookExceptionHandler implements GenericApplicationException<NonExistingBookException> {
   @Override
   public Response toResponse(NonExistingBookException nonExistingBookException) {
-    return Response.status(Response.Status.BAD_REQUEST).entity(errorDetails(Response.Status.BAD_REQUEST, nonExistingBookException)).build();
+    return Response.status(Response.Status.BAD_REQUEST).entity(ofErrorDetail(Response.Status.BAD_REQUEST, nonExistingBookException)).build();
   }
 }

@@ -9,6 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 public class BorrowerDuplicateEntryExceptionHandler implements GenericApplicationException<DuplicateBorrowerEntryException> {
   @Override
   public Response toResponse(DuplicateBorrowerEntryException duplicateBorrowerEntryException) {
-    return Response.status(Response.Status.CONFLICT).entity(errorDetails(Response.Status.CONFLICT, duplicateBorrowerEntryException)).build();
+    return Response.status(Response.Status.CONFLICT).entity(ofErrorDetail(Response.Status.CONFLICT, duplicateBorrowerEntryException)).build();
   }
 }

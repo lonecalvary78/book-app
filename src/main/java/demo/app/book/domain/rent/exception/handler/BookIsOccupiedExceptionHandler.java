@@ -9,6 +9,6 @@ import jakarta.ws.rs.ext.Provider;
 public class BookIsOccupiedExceptionHandler implements GenericApplicationException<BookIsOccupiedException> {
   @Override
   public Response toResponse(BookIsOccupiedException bookIsOccupiedException) {
-    return Response.status(Response.Status.CONFLICT).entity(errorDetails(Response.Status.CONFLICT, bookIsOccupiedException)).build();
+    return Response.status(Response.Status.CONFLICT).entity(ofErrorDetail(Response.Status.CONFLICT, bookIsOccupiedException)).build();
   }
 }
