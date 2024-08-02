@@ -18,6 +18,6 @@ class BookMediatorTest {
    @DisplayName("To check the book is exist based on the input book ID")
    void isExist() throws NoSuchAlgorithmException {
      var randomBookId = SecureRandom.getInstanceStrong().nextLong();
-     Assertions.assertFalse(()-> bookMediator.IsExist(randomBookId));
+     Assertions.assertFalse(()-> bookMediator.isExist(randomBookId));
    }
 }

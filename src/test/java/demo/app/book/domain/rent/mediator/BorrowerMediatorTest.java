@@ -18,6 +18,6 @@ class BorrowerMediatorTest {
    @DisplayName("To check the borrower is exist")
    void isExist() throws NoSuchAlgorithmException {
      var randomBookId = SecureRandom.getInstanceStrong().nextLong();
-     Assertions.assertFalse(borrowerMediator.IsExist(randomBookId));
+     Assertions.assertFalse(borrowerMediator.isExist(randomBookId));
    }
 }
