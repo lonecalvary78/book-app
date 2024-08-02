@@ -5,7 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
-import java.time.OffsetDateTime;
+
+import java.time.LocalDate;
 import java.time.ZoneId;
 
 @ApplicationScoped
@@ -19,21 +20,21 @@ public class RentRepository {
   }
 
   @Transactional
-  public void save(Rent renting) {
-    entityManager.persist(renting);
+  public void save(Rent rent) {
+    entityManager.persist(rent);
   }
 
   public boolean anyBookIsOccupiedBySameBorrowerAtTheMoment(Long bookId, Long borrowerId) {
-    return entityManager.createQuery("SELECT COUNT(renting) FROM Renting renting WHERE renting.bookId=:bookId AND renting.borrowerId=:borrowerId AND (renting.fromDate<=:currentDate AND renting.toDate>=:currentDate) AND renting.status='RENT'", Long.class)
+    return entityManager.createQuery("SELECT COUNT(rent) FROM Rent rent WHERE rent.bookId=:bookId AND rent.borrowerId=:borrowerId AND (rent.fromDate<=:currentDate AND rent.toDate>=:currentDate) AND rent.status='RENT'", Long.class)
             .setParameter("bookId",bookId)
             .setParameter("borrowerId",borrowerId)
-            .setParameter("currentDate", OffsetDateTime.now(ZoneId.systemDefault())).getSingleResult()>0;
+            .setParameter("currentDate", LocalDate.now(ZoneId.systemDefault())).getSingleResult()>0;
   }
 
   public boolean anyBookIsOccupiedByOtherBorrowerAtTheMoment(Long bookId, Long borrowerId) {
-    return entityManager.createQuery("SELECT COUNT(renting) FROM Renting renting WHERE renting.bookId=:bookId AND renting.borrowerId<>:borrowerId AND (renting.fromDate<=:currentDate AND bookRenting.toDate>=:currentDate) AND bookRenting.status='RENT'", Long.class)
+    return entityManager.createQuery("SELECT COUNT(rent) FROM Rent rent WHERE rent.bookId=:bookId AND rent.borrowerId<>:borrowerId AND (rent.fromDate<=:currentDate AND rent.toDate>=:currentDate) AND rent.status='RENT'", Long.class)
             .setParameter("bookId",bookId)
             .setParameter("borrowerId",borrowerId)
-            .setParameter("currentDate", OffsetDateTime.now(ZoneId.systemDefault())).getSingleResult()>0;
+            .setParameter("currentDate", LocalDate.now(ZoneId.systemDefault())).getSingleResult()>0;
   }
 }
