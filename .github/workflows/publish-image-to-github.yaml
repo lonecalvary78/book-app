@@ -1,10 +1,8 @@
 on:
-  workflow_call:
-    inputs:
-      tag_version:
-        type: string
-        required: false
-        default: 'latest'
+  workflow_run:
+    types: [completed]
+    workflows: [unit-tests]
+
 jobs:
   build-and-publish-image-to-github:
     runs-on: ubuntu-latest
