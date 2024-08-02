@@ -45,7 +45,7 @@ public class RentController {
           @APIResponse(responseCode = "400", description = "Indicated the invalid request when the book renting have not created yet", content = @Content(mediaType = MediaType.APPLICATION_JSON))
   })
   public void returnBook(@PathParam("rentId") Long rentId, @QueryParam("action") String action) throws NonExistBookRentingException, BookAlreadyReturnedException {
-    if (action.toUpperCase().equals("RETURN")) {
+    if (action.equalsIgnoreCase("RETURN")) {
       rentFacade.returnBookToLibrary(rentId);
     }
   }
