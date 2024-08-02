@@ -8,3 +8,9 @@ jobs:
     uses: ./.github/workflows/unit-tests.yaml
     with:
       env_profile: 'dev'
+  publish-image-to-github:
+    needs: unit-tests
+    uses: ./.github/workflows/publish-image-to-github.yaml
+  publish-image-to-gar:
+    needs: unit-tests
+    uses: ./.github/workflows/publish-image-to-gar.yaml
