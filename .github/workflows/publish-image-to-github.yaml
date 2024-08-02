@@ -1,3 +1,4 @@
+name: publish-image-to-github
 on:
   workflow_run:
     types: [completed]
