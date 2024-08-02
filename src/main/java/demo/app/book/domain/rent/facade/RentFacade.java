@@ -9,7 +9,6 @@ import demo.app.book.domain.rent.mediator.BookMediator;
 import demo.app.book.domain.rent.mediator.BorrowerMediator;
 import demo.app.book.domain.rent.model.RentRequestDTO;
 import demo.app.book.domain.rent.service.RentService;
-import demo.app.book.domain.rent.validator.PayloadValidator;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -25,7 +24,6 @@ public class RentFacade {
   BorrowerMediator borrowerMediator;
 
   public void rentBookFromLibary(RentRequestDTO rentRequestDTO) throws BookIsOccupiedException, NonExistingBookException, NonExistingBorrowerException {
-    PayloadValidator.validatePayload(rentRequestDTO);
     verifyRentingRequest(rentRequestDTO);
     rentService.verifyIfTheRequestedIsOccupiedAtTheMoment(rentRequestDTO);
     rentService.saveForNewRenting(rentRequestDTO);

@@ -1,7 +1,7 @@
 package demo.app.book.domain.book.model;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,15 +11,15 @@ import lombok.Setter;
 @Setter
 public class BookDTO {
   private Long id;
-  @NotBlank
+  @NotBlank(message = "ISBN should not be empty")
   private String isbn;
 
-  @NotBlank
+  @NotBlank(message = "Title should not be empty")
   private String title;
 
-  @NotBlank
+  @NotBlank(message = "Author should not be empty")
   private String author;
 
-  @Min(1950)
+  @Positive(message = "Year of book published should be a positive number")
   private int yearOfPublished;
 }
