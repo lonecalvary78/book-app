@@ -10,7 +10,9 @@ import org.mapstruct.Mappings;
 public interface RentMapper {
   @Mappings({
     @Mapping(source="bookId", target="bookId"),
-    @Mapping(source="borrowerId", target="borrowerId")
+    @Mapping(source="borrowerId", target="borrowerId"),
+    @Mapping(source="fromDate", target="fromDate", dateFormat = "yyyy-MM-dd"),
+    @Mapping(source="toDate", target="toDate", dateFormat = "yyyy-MM-dd")
   })
   Rent fromDTO(RentRequestDTO rentRequestDTO);
 }

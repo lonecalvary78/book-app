@@ -2,6 +2,7 @@ package demo.app.book.domain.rent.model;
 
 import jakarta.json.bind.annotation.JsonbDateFormat;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,19 +15,19 @@ import java.time.LocalDate;
 @Setter
 @NotNull
 public class RentRequestDTO {
-  @NotNull(message = "Book Id should not be null")
-  @Positive(message = "Book Id should be a positive number")
+  @NotNull(message = "Book Id should not be empty")
+  @Positive(message = "Book Id should be greater than 0")
   private Long bookId;
 
-  @NotNull(message = "Borrower Id should not be null")
-  @Positive(message = "Borrower Id should be a positive number")
+  @NotNull(message = "Borrower Id should not be empty")
+  @Positive(message = "Borrower Id should be greater than 0")
   private Long borrowerId;
 
-  @JsonbDateFormat("yyyy-MM-dd")
   @NotNull(message = "From Date should be empty")
-  private LocalDate fromDate;
+  @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "Star Date should follow the proper this format(YYYY-MM-DD)")
+  private String fromDate;
 
-  @JsonbDateFormat("yyyy-MM-dd")
   @NotNull(message = "End Date should be empty")
-  private LocalDate toDate;
+  @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "End Date should follow the proper this format(YYYY-MM-DD)")
+  private String toDate;
 }
