@@ -11,9 +11,9 @@ import lombok.Setter;
 public class BorrowerDTO {
   private Long id;
 
-  @NotBlank(message = "firstName should not be empty")
+  @NotBlank(message = "first name should not be empty")
   private String firstName;
 
-  @NotBlank(message = "lastName should not be empty")
+  @NotBlank(message = "last name should not be empty")
   private String lastName;
 }
