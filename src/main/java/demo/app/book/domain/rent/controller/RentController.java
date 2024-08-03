@@ -34,7 +34,7 @@ public class RentController {
      @APIResponse(responseCode = "409", description = "Indicated the request can not be proceed since the book was rented before or rented by other person at the moment", content = @Content(mediaType = MediaType.APPLICATION_JSON))
   })
   public void rentBook(@Valid RentRequestDTO rentRequestDTO) throws NonExistingBookException, NonExistingBorrowerException, BookIsOccupiedException {
-    rentMediator.rentBookFromLibary(rentRequestDTO);
+    rentMediator.rentBookFromLibrary(rentRequestDTO);
   }
 
   @PATCH

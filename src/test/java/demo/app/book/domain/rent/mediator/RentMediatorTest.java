@@ -23,7 +23,7 @@ class RentMediatorTest {
     var rentRequestDTO = new RentRequestDTO();
     rentRequestDTO.setBookId(1L);
     rentRequestDTO.setBorrowerId(1L);
-    Assertions.assertThrows(NonExistingBookException.class,()-> rentMediator.rentBookFromLibary(rentRequestDTO));
+    Assertions.assertThrows(NonExistingBookException.class,()-> rentMediator.rentBookFromLibrary(rentRequestDTO));
   }
 
   @Test

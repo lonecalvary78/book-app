@@ -6,6 +6,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static io.restassured.RestAssured.given;
 
@@ -16,8 +17,8 @@ class RentControllerTest {
     var rentRequestDTO = new RentRequestDTO();
     rentRequestDTO.setBookId(1L);
     rentRequestDTO.setBorrowerId(1L);
-    rentRequestDTO.setFromDate(LocalDate.now());
-    rentRequestDTO.setToDate(LocalDate.now());
+    rentRequestDTO.setFromDate(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+    rentRequestDTO.setToDate(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     given().contentType(MediaType.APPLICATION_JSON).body(rentRequestDTO).when().post("/rents").then().statusCode(400);
   }
 

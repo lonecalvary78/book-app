@@ -23,7 +23,7 @@ public class RentMediator {
   @Inject
   BorrowerVisitor borrowerVisitor;
 
-  public void rentBookFromLibary(RentRequestDTO rentRequestDTO) throws BookIsOccupiedException, NonExistingBookException, NonExistingBorrowerException {
+  public void rentBookFromLibrary(RentRequestDTO rentRequestDTO) throws BookIsOccupiedException, NonExistingBookException, NonExistingBorrowerException {
     verifyRentingRequest(rentRequestDTO);
     rentService.verifyIfTheRequestedIsOccupiedAtTheMoment(rentRequestDTO);
     rentService.saveForNewRenting(rentRequestDTO);
