@@ -1,4 +1,4 @@
-package demo.app.book.domain.rent.mediator;
+package demo.app.book.domain.rent.visitor;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -10,14 +10,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 @QuarkusTest
-class BookMediatorTest {
+class BookVisitorTest {
    @Inject
-   BookMediator bookMediator;
+   BookVisitor bookVisitor;
 
    @Test
    @DisplayName("To check the book is exist based on the input book ID")
    void isExist() throws NoSuchAlgorithmException {
      var randomBookId = SecureRandom.getInstanceStrong().nextLong();
-     Assertions.assertFalse(()-> bookMediator.isExist(randomBookId));
+     Assertions.assertFalse(()-> bookVisitor.isExist(randomBookId));
    }
 }

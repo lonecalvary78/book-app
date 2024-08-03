@@ -1,27 +1,27 @@
-package demo.app.book.domain.rent.facade;
+package demo.app.book.domain.rent.mediator;
 
 import demo.app.book.domain.book.exception.NonExistingBookException;
 import demo.app.book.domain.borrower.exception.NonExistingBorrowerException;
 import demo.app.book.domain.rent.exception.BookAlreadyReturnedException;
 import demo.app.book.domain.rent.exception.BookIsOccupiedException;
 import demo.app.book.domain.rent.exception.NonExistBookRentingException;
-import demo.app.book.domain.rent.mediator.BookMediator;
-import demo.app.book.domain.rent.mediator.BorrowerMediator;
+import demo.app.book.domain.rent.visitor.BookVisitor;
+import demo.app.book.domain.rent.visitor.BorrowerVisitor;
 import demo.app.book.domain.rent.model.RentRequestDTO;
 import demo.app.book.domain.rent.service.RentService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-public class RentFacade {
+public class RentMediator {
   @Inject
   RentService rentService;
 
   @Inject
-  BookMediator bookMediator;
+  BookVisitor bookVisitor;
 
   @Inject
-  BorrowerMediator borrowerMediator;
+  BorrowerVisitor borrowerVisitor;
 
   public void rentBookFromLibary(RentRequestDTO rentRequestDTO) throws BookIsOccupiedException, NonExistingBookException, NonExistingBorrowerException {
     verifyRentingRequest(rentRequestDTO);
@@ -37,9 +37,9 @@ public class RentFacade {
 
 
   private void verifyRentingRequest(RentRequestDTO rentRequestDTO) throws NonExistingBookException, NonExistingBorrowerException {
-    if(!bookMediator.isExist(rentRequestDTO.getBookId()))
+    if(!bookVisitor.isExist(rentRequestDTO.getBookId()))
       throw new NonExistingBookException();
-    else if (!borrowerMediator.isExist(rentRequestDTO.getBorrowerId())) {
+    else if (!borrowerVisitor.isExist(rentRequestDTO.getBorrowerId())) {
       throw new NonExistingBorrowerException();
     }
   }

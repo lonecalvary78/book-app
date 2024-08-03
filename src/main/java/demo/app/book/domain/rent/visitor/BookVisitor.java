@@ -1,4 +1,4 @@
-package demo.app.book.domain.rent.mediator;
+package demo.app.book.domain.rent.visitor;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import demo.app.book.domain.book.service.BookService;
@@ -6,7 +6,7 @@ import jakarta.inject.Inject;
 
 
 @ApplicationScoped
-public class BookMediator {
+public class BookVisitor {
   @Inject
   private BookService bookService;
 

@@ -1,4 +1,4 @@
-package demo.app.book.domain.rent.facade;
+package demo.app.book.domain.rent.mediator;
 
 import demo.app.book.domain.book.exception.NonExistingBookException;
 import demo.app.book.domain.rent.exception.NonExistBookRentingException;
@@ -13,9 +13,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 @QuarkusTest
-class RentFacadeTest {
+class RentMediatorTest {
   @Inject
-  RentFacade rentFacade;
+  RentMediator rentMediator;
 
   @Test
   @DisplayName("Perform Book Renting")
@@ -23,13 +23,13 @@ class RentFacadeTest {
     var rentRequestDTO = new RentRequestDTO();
     rentRequestDTO.setBookId(1L);
     rentRequestDTO.setBorrowerId(1L);
-    Assertions.assertThrows(NonExistingBookException.class,()-> rentFacade.rentBookFromLibary(rentRequestDTO));
+    Assertions.assertThrows(NonExistingBookException.class,()-> rentMediator.rentBookFromLibary(rentRequestDTO));
   }
 
   @Test
   @DisplayName("Return book to bookeeper")
   void returnBook() throws NoSuchAlgorithmException {
     var rentId = SecureRandom.getInstanceStrong().nextLong();
-    Assertions.assertThrows(NonExistBookRentingException.class,()-> rentFacade.returnBookToLibrary(rentId));
+    Assertions.assertThrows(NonExistBookRentingException.class,()-> rentMediator.returnBookToLibrary(rentId));
   }
 }

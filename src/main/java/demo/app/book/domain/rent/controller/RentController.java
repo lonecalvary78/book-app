@@ -5,7 +5,7 @@ import demo.app.book.domain.borrower.exception.NonExistingBorrowerException;
 import demo.app.book.domain.rent.exception.BookAlreadyReturnedException;
 import demo.app.book.domain.rent.exception.BookIsOccupiedException;
 import demo.app.book.domain.rent.exception.NonExistBookRentingException;
-import demo.app.book.domain.rent.facade.RentFacade;
+import demo.app.book.domain.rent.mediator.RentMediator;
 import demo.app.book.domain.rent.model.RentRequestDTO;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
@@ -24,7 +24,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 @Path("/rents")
 public class RentController {
   @Inject
-  private RentFacade rentFacade;
+  private RentMediator rentMediator;
 
   @POST
   @Operation(description = "To rent the book")
@@ -34,7 +34,7 @@ public class RentController {
      @APIResponse(responseCode = "409", description = "Indicated the request can not be proceed since the book was rented before or rented by other person at the moment", content = @Content(mediaType = MediaType.APPLICATION_JSON))
   })
   public void rentBook(@Valid RentRequestDTO rentRequestDTO) throws NonExistingBookException, NonExistingBorrowerException, BookIsOccupiedException {
-    rentFacade.rentBookFromLibary(rentRequestDTO);
+    rentMediator.rentBookFromLibary(rentRequestDTO);
   }
 
   @PATCH
@@ -46,7 +46,7 @@ public class RentController {
   })
   public void returnBook(@PathParam("rentId") Long rentId, @QueryParam("action") String action) throws NonExistBookRentingException, BookAlreadyReturnedException {
     if (action.equalsIgnoreCase("RETURN")) {
-      rentFacade.returnBookToLibrary(rentId);
+      rentMediator.returnBookToLibrary(rentId);
     }
   }
 }

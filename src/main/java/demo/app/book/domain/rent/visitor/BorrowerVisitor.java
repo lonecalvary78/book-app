@@ -1,4 +1,4 @@
-package demo.app.book.domain.rent.mediator;
+package demo.app.book.domain.rent.visitor;
 
 import demo.app.book.domain.borrower.repository.BorrowerRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -7,7 +7,7 @@ import jakarta.inject.Inject;
 import java.util.Optional;
 
 @ApplicationScoped
-public class BorrowerMediator {
+public class BorrowerVisitor {
   @Inject
   private BorrowerRepository borrowerRepository;
 
