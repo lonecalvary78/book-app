@@ -1,25 +1,9 @@
 permissions:
   contents: read
   id-token: write
-
 on:
-  workflow_call:
-    inputs:
-      min-instances:
-        type: number
-        required: false
-        default: 1
-      max-instances:
-        type: number
-        required: false
-        default: 1
-      region:
-        type: string
-        required: true
-      env_profile:
-        type: string
-        required: false
-        default: 'dev'
+  schedule:
+    - cron: '0 17 * * 0'
 jobs:
   deploy-app-to-cloudrun:
     runs-on: ubuntu-latest
