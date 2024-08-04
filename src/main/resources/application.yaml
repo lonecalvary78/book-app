@@ -20,7 +20,7 @@ pagination:
       cors:
         ~: true
         origins: /.*/
-        methods: GET, POST
+        methods: GET, POST, PATCH
     hibernate-orm:
       database:
         generation: update
@@ -42,7 +42,7 @@ pagination:
     http:
       cors:
         ~: true
-        methods: GET, POST
+        methods: GET, POST, PATCH
 
 "%prod":
   quarkus:
@@ -58,4 +58,4 @@ pagination:
     http:
       cors:
         ~: true
-        methods: GET, POST
+        methods: GET, POST, PATCH
