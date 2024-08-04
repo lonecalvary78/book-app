@@ -2,8 +2,11 @@ permissions:
   contents: read
   id-token: write
 on:
-  schedule:
-    - cron: '0 17 * * 0'
+  workflow_run:
+    types:
+      - completed
+    workflows:
+      - publish-image-to-gcp-artifact
 jobs:
   deploy-app-to-cloudrun:
     runs-on: ubuntu-latest

@@ -1,3 +1,4 @@
+name: publish-image-to-gcp-artifact
 permissions:
   contents: read
   id-token: write
