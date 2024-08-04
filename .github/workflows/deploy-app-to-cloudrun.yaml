@@ -2,11 +2,24 @@ permissions:
   contents: read
   id-token: write
 on:
-  workflow_run:
-    types:
-      - completed
-    workflows:
-      - publish-image-to-gcp-artifact
+  workflow_call:
+    inputs:
+      env_profile:
+        type: string
+        required: false
+        default: 'dev'
+      min-instances:
+        type: number
+        required: false
+        default: 1
+      max-instances:
+        type: number
+        required: false
+        default: 1
+      region:
+        type: string
+        required: false
+        default: 'asia-southeast2'
 jobs:
   deploy-app-to-cloudrun:
     runs-on: ubuntu-latest

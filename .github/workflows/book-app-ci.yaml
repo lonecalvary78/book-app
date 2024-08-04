@@ -15,3 +15,7 @@ jobs:
     needs: unit-tests
     uses: ./.github/workflows/publish-image-to-gar.yaml
     secrets: inherit
+  deploy-app-to-cloud-run:
+    needs: publish-image-to-gar
+    uses: ./.github/workflows/deploy-app-to-cloudrun.yaml
+    secrets: inherit
